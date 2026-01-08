@@ -6,32 +6,32 @@ const services = [
   {
     title: "Repair & Programming",
     desc: "Get fixed prices and guaranteed loading when booking shipments.",
-    img: "/card1.png",
+    img: "/assets/repair&programming.svg",
   },
   {
     title: "GMDSS Radio Survey",
     desc: "Stable rates with assured space allocation.",
-    img: "/card2.png",
+    img: "/assets/gmdss.svg",
   },
   {
     title: "VDR Annual Survey",
     desc: "Freight quote for standard, oversized, and LCL shipments.",
-    img: "/card3.png",
+    img: "/assets/vdr.svg",
   },
   {
     title: "Magnetic Compass Calibration",
     desc: "Book and manage door-to-door deliveries online.",
-    img: "/card4.png",
+    img: "/assets/magneticcompass.svg",
   },
     {
     title: "Calibration Services",
     desc: "Stable rates with assured space allocation.",
-    img: "/card2.png",
+    img: "/assets/caliberation.svg",
   },
   {
     title: "Marine Services",
     desc: "Freight quote for standard, oversized, and LCL shipments.",
-    img: "/card3.png",
+    img: "/assets/marine.svg",
   },
   
 ];
