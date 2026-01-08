@@ -44,7 +44,7 @@ export default function HoverImageSection() {
         <div className="grid items-center gap-16 lg:grid-cols-2">
 
           {/* IMAGE SECTION */}
-          <div className="relative h-[600px] w-full overflow-hidden rounded-2xl shadow-lg">
+          <div className="relative h-[600px] w-full overflow-hidden rounded shadow-lg">
             <Image
               key={items[activeIndex].image}
               src={items[activeIndex].image}
@@ -61,8 +61,8 @@ export default function HoverImageSection() {
               Why Choose Us?
             </h4>
 
-            <h2 className="mt-2 font-heading text-4xl font-medium text-gray-900">
-              Focused on Your Needs and Satisfaction
+            <h2 className="mt-2 font-heading text-4xl font-light text-gray-900">
+              Focused on Your Needs and <span className="font-medium">Satisfaction</span>
             </h2>
 
             <div className="mt-10 space-y-4">
@@ -73,7 +73,7 @@ export default function HoverImageSection() {
                   <div
                     key={index}
                     onClick={() => handleClick(index)}
-                    className={`cursor-pointer rounded-xl border p-6 transition-all duration-300 ${
+                    className={`cursor-pointer rounded border p-6 transition-all duration-300 ${
                       isActive
                         ? "border-blue-500 bg-blue-50 shadow-sm"
                         : "border-gray-200 hover:border-blue-300"

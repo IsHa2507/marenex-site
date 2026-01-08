@@ -31,7 +31,7 @@ export default function Services() {
             return (
               <div
                 key={index}
-                className="flex flex-col rounded-xl border border-gray-200 bg-white p-8 transition hover:shadow-lg hover:border-blue-500"
+                className="flex flex-col rounded border border-gray-200 bg-white p-8 transition hover:shadow-lg hover:border-blue-500"
               >
                 {/* Header: Icon + Title */}
                 <div className="mb-4 flex items-start gap-4">

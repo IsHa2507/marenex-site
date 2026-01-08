@@ -72,8 +72,8 @@ export default function ServicesSlider() {
             <h4 className="font-heading text-xl font-medium text-orange-600">
               Our Services 
             </h4>
-          <h2 className="font-heading text-4xl font-medium leading-tight text-gray-900 md:text-5xl">
-            Logistics services and solutions
+          <h2 className="font-heading text-4xl font-light leading-tight text-gray-900 md:text-5xl">
+            Logistics <span className="font-medium">Services</span> and Solutions
           </h2>
           <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
             Regardless of your industry or market, we offer logistics solutions
@@ -112,12 +112,12 @@ export default function ServicesSlider() {
           {services.map((item, i) => (
             <div
               key={i}
-              className="min-w-[260px] bg-white rounded-xl shadow p-4"
+              className="min-w-[260px] bg-white border border-gray-200 rounded p-4 hover:border-blue-500"
             >
               <img
                 src={item.img}
                 alt={item.title}
-                className="rounded-lg mb-4"
+                className="rounded mb-4"
               />
               <h3 className="font-medium">{item.title}</h3>
               <p className="text-sm text-gray-600 mt-2">

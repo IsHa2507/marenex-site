@@ -60,10 +60,10 @@ export default function Navbar() {
      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       {/* Logo */}
       <Image
-        src="/logo/logo-nav.png"
+        src="/logo/nav-logo.svg"
         alt="Marenex Logo"
-        width={50}
-        height={42}
+        width={150}
+        height={50}
       />
 
 
