@@ -1,6 +1,7 @@
 "use client";
 import Button from "@/component/ui/button";
 import { useRef, useState } from "react";
+import Link from "next/link";
 
 const services = [
   {
@@ -143,7 +144,7 @@ export default function ServicesSlider() {
             />
           ))}
         </div>
-        <div className="flex justify-center mt-6"><Button label="Learn More"/></div>
+        <div className="flex justify-center mt-6"><Link href="/services"><Button label="Learn More"/></Link></div>
 
       </div>
     </section>
