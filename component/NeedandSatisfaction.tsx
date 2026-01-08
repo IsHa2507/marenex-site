@@ -57,11 +57,11 @@ export default function HoverImageSection() {
 
           {/* CONTENT SECTION */}
           <div>
-            <h4 className="font-heading text-xl font-semibold text-blue-600">
+            <h4 className="font-heading text-xl font-medium text-orange-600">
               Why Choose Us?
             </h4>
 
-            <h2 className="mt-2 font-heading text-4xl font-semibold text-gray-900">
+            <h2 className="mt-2 font-heading text-4xl font-medium text-gray-900">
               Focused on Your Needs and Satisfaction
             </h2>
 

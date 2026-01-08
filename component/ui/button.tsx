@@ -14,7 +14,7 @@ export default function PrimaryButton({
   return (
     <button
       onClick={onClick}
-      className="group mt-8 inline-flex items-center gap-3 rounded-full bg-blue-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-blue-700"
+      className="group mt-8 inline-flex items-center gap-3 rounded bg-blue-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-orange-400"
     >
       {label}
 

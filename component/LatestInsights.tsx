@@ -1,11 +1,11 @@
-// LatestInsights.tsx
+"use client";
+import Button from "@/component/ui/button";
 import React from "react";
 
 interface Insight {
   title: string;
   tag: string;
   image: string;
-  large?: boolean;
 }
 
 const insights: Insight[] = [
@@ -13,94 +13,94 @@ const insights: Insight[] = [
     title:
       "Power behind the brand: why lifestyle companies need technological advancement",
     tag: "Resilience · 5 Jan 2026",
-    image: "/images/insight-1.jpg",
-    large: true,
+    image: "/Blog/blog1.jpg",
   },
   {
     title:
       "From cost to catalyst: Why retailers must make logistics a resilience lever",
     tag: "Resilience · 30 Dec 2025",
-    image: "/images/insight-2.jpg",
+    image: "/Blog/blog2.jpg",
   },
   {
     title:
       "Tech supply chains: collaboration is the next resilience frontier",
     tag: "Resilience · 22 Dec 2025",
-    image: "/images/insight-3.jpg",
+    image: "/Blog/blog3.jpg",
   },
   {
     title:
       "What to expect in 2026 – 2 trends that will shape ecommerce logistics",
     tag: "Digitalisation · 18 Dec 2025",
-    image: "/images/insight-4.jpg",
+    image: "/Blog/blog4.jpeg",
   },
 ];
 
-const LatestInsights: React.FC = () => {
+const LatestInsights = () => {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between items-end mb-12">
+    <section className="bg-white py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        {/* ================= HEADER ================= */}
+        <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="text-4xl font-light text-gray-900 mb-4">
+            <h2 className="font-heading text-4xl font-medium leading-tight text-gray-900 md:text-5xl">
               Latest insights
             </h2>
-            <p className="text-gray-600 max-w-2xl">
+            <p className="max-w-2xl text-gray-600">
               Access the latest articles, trends and research to guide your
-              strategy and keep you updated on what's new in the supply chain world.
+              strategy and keep you updated on what's new in the supply chain
+              world.
             </p>
           </div>
 
-          <select className="border rounded-md px-4 py-2 text-sm">
+          {/* <select className="w-fit rounded-md border px-4 py-2 text-sm">
             <option>All categories</option>
-          </select>
+          </select> */}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Large Card */}
-          <div className="lg:row-span-2 relative rounded-2xl overflow-hidden">
-            <img
-              src={insights[0].image}
-              className="w-full h-full object-cover"
-              alt={insights[0].title}
-            />
-            <div className="absolute inset-0 bg-black/40 p-6 flex flex-col justify-end">
-              <span className="text-xs text-gray-200 mb-2">
-                {insights[0].tag}
-              </span>
-              <h3 className="text-white text-xl font-medium">
-                {insights[0].title}
-              </h3>
-            </div>
-          </div>
+        {/* ================= DESKTOP GRID ================= */}
+        <div
+          className="hidden lg:grid h-[720px] gap-[12px]"
+          style={{
+            gridTemplateColumns: "repeat(12, 1fr)",
+            gridTemplateRows: "repeat(10, 1fr)",
+          }}
+        >
+          {/* LEFT BIG CARD */}
+          <InsightCard
+            insight={insights[0]}
+            large
+            style={{ gridArea: "1 / 1 / 11 / 7" }}
+          />
 
-          {/* Small Cards */}
-          {insights.slice(1).map((item, idx) => (
-            <div
-              key={idx}
-              className="relative rounded-2xl overflow-hidden h-[220px]"
-            >
-              <img
-                src={item.image}
-                className="w-full h-full object-cover"
-                alt={item.title}
-              />
-              <div className="absolute inset-0 bg-black/40 p-4 flex flex-col justify-end">
-                <span className="text-xs text-gray-200 mb-1">
-                  {item.tag}
-                </span>
-                <h3 className="text-white text-sm font-medium">
-                  {item.title}
-                </h3>
-              </div>
-            </div>
+          {/* RIGHT TOP */}
+          <InsightCard
+            insight={insights[1]}
+            style={{ gridArea: "1 / 7 / 6 / 13" }}
+          />
+
+          {/* RIGHT BOTTOM LEFT */}
+          <InsightCard
+            insight={insights[2]}
+            style={{ gridArea: "6 / 7 / 11 / 10" }}
+          />
+
+          {/* RIGHT BOTTOM RIGHT */}
+          <InsightCard
+            insight={insights[3]}
+            style={{ gridArea: "6 / 10 / 11 / 13" }}
+          />
+        </div>
+
+        {/* ================= MOBILE / TABLET ================= */}
+        <div className="grid gap-6 lg:hidden">
+          {insights.map((item, index) => (
+            <InsightCard key={index} insight={item} />
           ))}
         </div>
 
-        <div className="flex justify-center mt-12">
-          <button className="border px-6 py-2 rounded-md text-sm hover:bg-gray-100">
-            View All
-          </button>
+        {/* ================= CTA ================= */}
+        <div className="mt-14 flex justify-center">
+          <Button label="Veiw All Insights"/>
         </div>
       </div>
     </section>
@@ -108,3 +108,44 @@ const LatestInsights: React.FC = () => {
 };
 
 export default LatestInsights;
+
+/* ===================================================== */
+/* ================== CARD COMPONENT =================== */
+/* ===================================================== */
+
+interface InsightCardProps {
+  insight: Insight;
+  style?: React.CSSProperties;
+  large?: boolean;
+}
+
+const InsightCard = ({ insight, style, large }: InsightCardProps) => {
+  return (
+    <div
+      className="group relative overflow-hidden rounded-2xl"
+      style={style}
+    >
+      {/* IMAGE */}
+      <img
+        src={insight.image}
+        alt={insight.title}
+        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+
+      {/* OVERLAY */}
+      <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6">
+        <span className="mb-2 text-xs text-gray-200">
+          {insight.tag}
+        </span>
+
+        <h3
+          className={`text-white ${
+            large ? "text-2xl font-medium" : "text-sm font-medium"
+          }`}
+        >
+          {insight.title}
+        </h3>
+      </div>
+    </div>
+  );
+};

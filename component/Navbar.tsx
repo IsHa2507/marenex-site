@@ -2,7 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaBars,
+  FaTimes,
+  FaSearch,
+  FaBell,
+  FaQuestionCircle,
+  FaEnvelope,
+  FaGlobe,
+  FaChevronDown,
+} from "react-icons/fa";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -10,168 +19,138 @@ export default function Navbar() {
   const [servicesOpen, setServicesOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
-      ${scrolled ? "bg-white shadow-md" : "bg-transparent"}`}
-    >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center">
-          <Image
-            src="/logo/logo-nav.png" // Replace with your logo path
-            alt="Marenex Logo"
-            width={70}
-            height={50}
-            className="object-contain"
-          />
-        </div>
+    <header className="fixed top-0 left-0 w-full z-50">
+  <div
+    className={`transition-all duration-300 ${
+      scrolled ? "bg-white shadow-md" : "bg-transparent"
+    }`}
+  >
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center space-x-6">
-          <a
-            href="#"
-            className={`text-sm font-medium transition-colors ${
-              scrolled ? "text-gray-700 hover:text-black" : "text-white hover:text-gray-200"
-            }`}
-          >
-            Home
-          </a>
-          <a
-            href="#"
-            className={`text-sm font-medium transition-colors ${
-              scrolled ? "text-gray-700 hover:text-black" : "text-white hover:text-gray-200"
-            }`}
-          >
-            About
-          </a>
-          {/* Services Dropdown */}
-          <div className="relative">
-            <button
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
-              className={`text-sm font-medium transition-colors ${
-                scrolled ? "text-gray-700 hover:text-black" : "text-white hover:text-gray-200"
-              } flex items-center space-x-1`}
-            >
-              <span>Services</span>
-            </button>
+      {/* ───── TOP UTILITY BAR ───── */}
+<div
+  className={`
+    hidden md:block
+    w-screen
+    border-b
+    ${scrolled ? "border-gray-200" : "border-white/20"}
+  `}
+>
+  <div
+    className={`
+      max-w-7xl mx-auto
+      flex justify-end gap-6
+      px-6 py-2 text-xs
+      ${scrolled ? "text-black" : "text-white"}
+    `}
+  >
+    <NavIcon icon={<FaGlobe size={12} />} label="EN" />
+    <NavIcon icon={<FaQuestionCircle size={12} />} label="Support" />
+    <NavIcon icon={<FaEnvelope size={12} />} label="Contact Us" />
+  </div>
+</div>
 
-            {servicesOpen && (
-              <div
-                onMouseEnter={() => setServicesOpen(true)}
-                onMouseLeave={() => setServicesOpen(false)}
-                className="absolute top-full left-0 mt-2 w-40 bg-white rounded-md shadow-lg text-gray-800"
-              >
-                {["Logistics", "Shipping", "Tracking"].map((item) => (
-                  <a
-                    key={item}
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 transition"
-                  >
-                    {item}
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
 
-          
-          <a
-            href="#"
-            className={`text-sm font-medium transition-colors ${
-              scrolled ? "text-gray-700 hover:text-black" : "text-white hover:text-gray-200"
-            }`}
-          >
-            Product
-          </a>
-          <a
-            href="#"
-            className={`text-sm font-medium transition-colors ${
-              scrolled ? "text-gray-700 hover:text-black" : "text-white hover:text-gray-200"
-            }`}
-          >
-            Contact
-          </a>
-        </nav>
+      {/* ───── MAIN NAVBAR ───── */}
+     <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      {/* Logo */}
+      <Image
+        src="/logo/logo-nav.png"
+        alt="Marenex Logo"
+        width={50}
+        height={42}
+      />
 
-        {/* Buttons */}
-        <div className="hidden md:flex items-center space-x-3">
-          <button
-            className={`px-4 py-2 rounded border text-sm font-medium transition ${
-              scrolled ? "border-gray-300 text-gray-800" : "border-white text-white"
-            }`}
-          >
-            Register
-          </button>
-          <button className="px-4 py-2 rounded bg-blue-900 text-white text-sm font-medium hover:bg-blue-700">
-            Login
-          </button>
-        </div>
 
-        {/* Mobile Menu Toggle */}
-        <div className="md:hidden flex items-center">
-          <button onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </button>
-        </div>
-      </div>
+        {/* Desktop Nav */}
+        <nav
+          className={`hidden md:flex items-center gap-8 ${
+            scrolled ? "text-black" : "text-white"
+          }`}
+        >
+          <a href="#" className="hover:text-orange-400">Home</a>
+          <a href="#" className="hover:text-orange-400">About</a>
 
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-white text-gray-800 w-full shadow-md">
-          <a href="#" className="block px-6 py-3 hover:bg-gray-100">
-            Home
-          </a>
-
-          {/* Services Mobile Dropdown */}
-          <div>
-            <button
-              onClick={() => setServicesOpen(!servicesOpen)}
-              className="w-full text-left px-6 py-3 hover:bg-gray-100 flex justify-between items-center"
-            >
+          {/* SERVICES DROPDOWN */}
+          <div className="relative group">
+            <button className="flex items-center gap-1 hover:text-orange-400">
               Services
-              <span>{servicesOpen ? "-" : "+"}</span>
+              <FaChevronDown
+                size={12}
+                className="transition-transform duration-300 group-hover:rotate-180"
+              />
             </button>
-            {servicesOpen &&
-              ["Logistics", "Shipping", "Tracking"].map((item) => (
+
+            <div
+              className="
+                absolute left-0 top-full mt-3 w-56
+                opacity-0 invisible
+                group-hover:opacity-100 group-hover:visible
+                transition-all duration-300
+                bg-white text-black rounded-xl shadow-xl
+                p-2
+              "
+            >
+              {[
+                "Repair & Programming",
+                "GMDSS Radio Survey",
+                "VDR Annual Survey",
+                "Magnetic Compass Calibration",
+                "Calibration",
+                "Marine Services",
+              ].map((title) => (
                 <a
-                  key={item}
+                  key={title}
                   href="#"
-                  className="block px-12 py-2 hover:bg-gray-100"
+                  className="block px-4 py-3 rounded-lg hover:bg-blue-50"
                 >
-                  {item}
+                  <p className="text-sm font-medium">{title}</p>
                 </a>
               ))}
+            </div>
           </div>
 
-          <a href="#" className="block px-6 py-3 hover:bg-gray-100">
-            About
-          </a>
-          <a href="#" className="block px-6 py-3 hover:bg-gray-100">
-            Product
-          </a>
-          <a href="#" className="block px-6 py-3 hover:bg-gray-100">
-            Contact
-          </a>
+          <a href="#" className="hover:text-orange-400">Product</a>
+          <a href="#" className="hover:text-orange-400">Blog</a>
+        </nav>
 
-          <div className="flex flex-col px-6 py-3 space-y-2">
-            <button className="px-4 py-2 rounded border border-gray-300 text-gray-800">
-              Register
-            </button>
-            <button className="px-4 py-2 rounded bg-blue-900 text-white hover:bg-blue-700">
-              Login
-            </button>
-          </div>
-        </div>
-      )}
-    </header>
+        {/* Mobile Menu Icon */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className={`md:hidden ${scrolled ? "text-black" : "text-white"}`}
+        >
+          {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+        </button>
+      </div>
+    </div>
+
+    {/* ───── MOBILE MENU ───── */}
+    {menuOpen && (
+      <div className="md:hidden bg-white text-black px-6 py-4 space-y-3">
+        {["Home", "About", "Services", "Product", "Blog"].map((item) => (
+          <a key={item} href="#" className="block">
+            {item}
+          </a>
+        ))}
+      </div>
+    )}
+  
+</header>
+
+  );
+}
+
+/* Reusable icon item */
+function NavIcon({ icon, label }: { icon: JSX.Element; label: string }) {
+  return (
+    <div className="flex items-center gap-1 cursor-pointer hover:opacity-70">
+      {icon}
+      <span>{label}</span>
+    </div>
   );
 }

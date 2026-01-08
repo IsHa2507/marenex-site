@@ -1,36 +1,78 @@
 "use client";
+import Button from "@/component/ui/button";
+import { useRef, useState } from "react";
 
 const services = [
   {
-    title: "Marenex Spot",
+    title: "Repair & Programming",
     desc: "Get fixed prices and guaranteed loading when booking shipments.",
     img: "/card1.png",
   },
   {
-    title: "Ocean Contract",
+    title: "GMDSS Radio Survey",
     desc: "Stable rates with assured space allocation.",
     img: "/card2.png",
   },
   {
-    title: "Ocean Quote Request",
+    title: "VDR Annual Survey",
     desc: "Freight quote for standard, oversized, and LCL shipments.",
     img: "/card3.png",
   },
   {
-    title: "Marenex Go",
+    title: "Magnetic Compass Calibration",
     desc: "Book and manage door-to-door deliveries online.",
     img: "/card4.png",
   },
+    {
+    title: "Calibration Services",
+    desc: "Stable rates with assured space allocation.",
+    img: "/card2.png",
+  },
+  {
+    title: "Marine Services",
+    desc: "Freight quote for standard, oversized, and LCL shipments.",
+    img: "/card3.png",
+  },
+  
 ];
 
 export default function ServicesSlider() {
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [activeDot, setActiveDot] = useState(0);
+
+  const DOTS = 3; // subtle indicators, not per-card
+
+  const handleScroll = () => {
+    if (!sliderRef.current) return;
+
+    const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+    const progress = scrollLeft / (scrollWidth - clientWidth);
+    setActiveDot(Math.round(progress * (DOTS - 1)));
+  };
+
+  const scrollToDot = (index: number) => {
+    if (!sliderRef.current) return;
+
+    const { scrollWidth, clientWidth } = sliderRef.current;
+    const target =
+      ((scrollWidth - clientWidth) / (DOTS - 1)) * index;
+
+    sliderRef.current.scrollTo({
+      left: target,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-light">
+            <h4 className="font-heading text-xl font-medium text-orange-600">
+              Our Services 
+            </h4>
+          <h2 className="font-heading text-4xl font-medium leading-tight text-gray-900 md:text-5xl">
             Logistics services and solutions
           </h2>
           <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
@@ -40,25 +82,33 @@ export default function ServicesSlider() {
         </div>
 
         {/* Tabs */}
-        <div className="flex justify-center gap-8 mb-10 text-sm font-medium">
-          {["Transport", "Store", "Clear & Protect", "Logistics Management", "Solutions"].map(
-            (tab, i) => (
-              <button
-                key={i}
-                className={`pb-2 ${
-                  i === 0
-                    ? "border-b-2 border-black text-black"
-                    : "text-gray-500"
-                }`}
-              >
-                {tab}
-              </button>
-            )
-          )}
-        </div>
+        {/* <div className="flex justify-center gap-8 mb-10 text-sm font-medium">
+          {[
+            "Transport",
+            "Store",
+            "Clear & Protect",
+            "Logistics Management",
+            "Solutions",
+          ].map((tab, i) => (
+            <button
+              key={i}
+              className={`pb-2 ${
+                i === 0
+                  ? "border-b-2 border-black text-black"
+                  : "text-gray-500"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div> */}
 
         {/* Slider */}
-        <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+        <div
+          ref={sliderRef}
+          onScroll={handleScroll}
+          className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
+        >
           {services.map((item, i) => (
             <div
               key={i}
@@ -70,17 +120,30 @@ export default function ServicesSlider() {
                 className="rounded-lg mb-4"
               />
               <h3 className="font-medium">{item.title}</h3>
-              <p className="text-sm text-gray-600 mt-2">{item.desc}</p>
+              <p className="text-sm text-gray-600 mt-2">
+                {item.desc}
+              </p>
+              
+
             </div>
           ))}
         </div>
 
-        {/* Pagination dots */}
+        {/* Subtle Dots */}
         <div className="flex justify-center mt-6 gap-2">
-          <span className="w-6 h-2 rounded-full bg-black"></span>
-          <span className="w-2 h-2 rounded-full bg-gray-300"></span>
-          <span className="w-2 h-2 rounded-full bg-gray-300"></span>
+          {Array.from({ length: DOTS }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollToDot(i)}
+              className={`transition-all duration-300 rounded-full ${
+                activeDot === i
+                  ? "w-6 h-2 bg-black"
+                  : "w-2 h-2 bg-gray-300"
+              }`}
+            />
+          ))}
         </div>
+        <div className="flex justify-center mt-6"><Button label="Learn More"/></div>
 
       </div>
     </section>

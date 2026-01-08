@@ -8,14 +8,14 @@ export default function AboutHero() {
 
           {/* LEFT CONTENT */}
           <div>
-            <h4 className="font-heading text-xl font-semibold text-blue-600">
+            <h4 className="font-heading text-xl font-medium text-orange-600">
               About Us
             </h4>
 
-            <h1 className="font-heading text-4xl font-semibold leading-tight text-gray-900 md:text-5xl">
+            <h2 className="font-heading text-4xl font-medium leading-tight text-gray-900 md:text-5xl">
               Setting Sail Towards <br />
               <span className="text-blue-600">Innovation</span> and Reliability
-            </h1>
+            </h2>
 
             <p className="mt-6 max-w-xl font-body text-lg text-gray-600">
               At Marenex Services, we are dedicated to setting a new standard in ship
