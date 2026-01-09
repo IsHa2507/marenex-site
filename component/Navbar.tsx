@@ -62,7 +62,7 @@ export default function Navbar({ variant = "default" }: NavbarProps) {
           {/* Desktop Nav */}
           <nav className={`hidden md:flex items-center gap-8 ${isLight ? "text-black" : "text-white"}`}>
             <Link href="/" className="hover:text-orange-400">Home</Link>
-            <Link href="/about" className="hover:text-orange-400">About</Link>
+            <Link href="/aboutus" className="hover:text-orange-400">About</Link>
 
             {/* SERVICES DROPDOWN */}
             <div className="relative group">
