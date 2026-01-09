@@ -50,7 +50,9 @@ export default function Navbar({ variant = "default" }: NavbarProps) {
           <div className={`max-w-7xl mx-auto flex justify-end gap-6 px-6 py-2 text-xs ${isLight ? "text-black" : "text-white"}`}>
             <NavIcon icon={<FaGlobe size={12} />} label="EN" />
             <NavIcon icon={<FaQuestionCircle size={12} />} label="Support" />
-            <NavIcon icon={<FaEnvelope size={12} />} label="Contact Us" />
+            <Link href="/contactus">
+             <NavIcon icon={<FaEnvelope size={12} />} label="Contact Us" />
+            </Link>
           </div>
         </div>
 
