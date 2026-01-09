@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -121,7 +122,13 @@ export default function Navbar({ variant = "default" }: NavbarProps) {
 }
 
 // ───── REUSABLE ICON ─────
-function NavIcon({ icon, label }: { icon: JSX.Element; label: string }) {
+function NavIcon({
+  icon,
+  label,
+}: {
+  icon: React.ReactNode;
+  label: string;
+}) {
   return (
     <div className="flex items-center gap-1 cursor-pointer hover:opacity-70">
       {icon}
@@ -129,3 +136,4 @@ function NavIcon({ icon, label }: { icon: JSX.Element; label: string }) {
     </div>
   );
 }
+
